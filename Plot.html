@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>math.js | plot</title>
+  <script src="math.js"></script>
+  <script src="plotly.js"></script>
+  <link rel="stylesheet" href="lig.css">
+  </head>
+<body>
+<div id="container">
+  <center><a href="home.html"><button id="home" onmouseover="p()" onmouseout="p()">HOME</button></a></center>
+  <header><center>PLOT FOR EQUATION </center></header><br>
+  <form id="form">
+    <label for="eq"><p>Enter an equation:</p></label>
+    <input type="text" id="text" value="y=x" />&nbsp;&nbsp;
+    <input id="draw" type="submit" value="Draw" onmouseover="p()" onmouseout="p()"/>
+  </form>
+
+  <div id="plott"></div>
+  <audio id="sound">
+      <source src="./img/sound.mp3" type="audio/mpeg">
+  </audio> 
+</div>
+<script>
+  var audio=document.getElementById("sound");
+  function p(){audio.play();}
+  function draw() {
+    try {
+      // compile the expression once
+      const expression = document.getElementById('text').value
+      const expr = math.compile(expression)
+
+      // evaluate the expression repeatedly for different values of x
+      const xValues = math.range(-10, 10, 0.5).toArray()
+      const yValues = xValues.map(function (x) {
+        return expr.eval({x: x})
+      })
+
+      // render the plot using plotly
+      const trace1 = {
+        x: xValues,
+        y: yValues,
+        type: 'scatter'
+      }
+      const data = [trace1]
+      Plotly.newPlot('plott', data)
+    }
+    catch (err) {
+      console.error(err)
+      alert(err)
+    }
+  }
+
+  document.getElementById('form').onsubmit = function (event) {
+    event.preventDefault()
+    draw()
+  }
+
+  draw()
+</script>
+
+</body>
+</html>

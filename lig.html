@@ -1,0 +1,105 @@
+<html>
+<head>
+    <script src="lig.js"></script>
+    <script src="math.js"></script>
+    <script src="plotly.js"></script>
+    <link rel="stylesheet" href="lig.css">
+</head>
+<body>
+<div id="container">
+    <center><a href="home.html"><button id="home" onmouseover="p()" onmouseout="p()">HOME</button></a></center>
+    <header><center>LINEAR REGRESSION CALCULATOR</center></header><br>
+    <p>For your data, the regression equation for Y is:</p>
+    <h1 id="eq"></h1><span id="err" style="color:red"></span>
+    <p>You asked the calculator to estimate a Y value for one or more X values. You'll find the estimated Y values in the Estimated Y text box below.</p>
+    <p>As you can see the output from this calculator is fairly verbose. Mostly it should be self-explanatory, but you should note that any apparent 
+         discrepancies in calculations are because rounding is used for the purposes of display, but not for the calculations themselves.</p>
+    <p>If you wish to perform a further calculation, it is necessary to hit the reset button at the bottom of the page.</p>
+    
+    <div id="input">    
+        
+        <div id="sum">
+            <center><strong>Summary</strong></center>
+            xmean   : <span id="xmean" style="position:relative;left:0px;top:0px;"></span><br>
+            ymean   : <span id="ymean" style="position:relative;left:0px;top:0px;"></span><br>
+            intercept:<span id="i" style="position:relative;left:0px;top:0px;"></span><br>
+            slope :<span id="m" style="position:relative;left:0px;top:0px;"></span><br>
+            R<sup>2</sup>    :<span id="r" style="position:relative;left:0px;top:0px;"></span><br>
+            MSE     :<span id="mse" style="position:relative;left:0px;top:0px;"></span><br>            
+        </div>
+        
+        <span id="xx">X Values : </span>
+        <textarea type="text" id="x" style="position:relative;left:40px"></textarea><br>
+        <span id="xx">Y Values : </span>
+        <textarea type="text" id="y" style="position:relative;left:40px"></textarea><br>
+        <span id="xx">Estimate : </span>
+        <textarea type="text" id="e" style="position:relative;left:44px"></textarea><br>
+        <span id="xx">Estimated Y : </span>
+        <textarea type="text" id="Y"></textarea><br>
+         
+    </div>
+</div>
+    
+    
+    <center><a href="index.html"><button id="reset" onmouseover="p()" onmouseout="p()">RESET</button></a><br></center>
+    <div id="plot"></div>   
+    <audio id="sound">
+        <source src="./img/sound.mp3" type="audio/mpeg">
+    </audio> 
+    <script>
+      var audio=document.getElementById("sound");
+      function p(){audio.play();}
+        document.getElementById("err").innerHTML=window.localStorage.getItem("err");
+        document.getElementById("xmean").innerHTML=window.localStorage.getItem("xmean");
+        document.getElementById("ymean").innerHTML=window.localStorage.getItem("ymean");
+        document.getElementById("eq").innerHTML=window.localStorage.getItem("eq");
+        document.getElementById("m").innerHTML=window.localStorage.getItem("m");
+        document.getElementById("i").innerHTML=window.localStorage.getItem("i");
+        document.getElementById("r").innerHTML=window.localStorage.getItem("r");
+        document.getElementById("mse").innerHTML=window.localStorage.getItem("mse");
+        document.getElementById("Y").innerHTML=window.localStorage.getItem("Y");
+        document.getElementById("x").innerHTML=window.localStorage.getItem("x");
+        document.getElementById("y").innerHTML=window.localStorage.getItem("y");
+        document.getElementById("e").innerHTML=window.localStorage.getItem("e");
+        window.localStorage.clear();
+    </script>
+
+    <script>
+        draw();
+      function draw() {
+        try {
+          // compile the expression once
+          const expression = document.getElementById("eq").innerHTML;
+          const expr = math.compile(expression)
+    
+          // evaluate the expression repeatedly for different values of x
+          const xValues = math.range(0, 8, 1 ).toArray()
+          const yValues = xValues.map(function (x) {
+            return expr.eval({x: x})
+          })
+    
+          // render the plot using plotly
+          const trace1 = {
+            x: xValues,
+            y: yValues,
+            type: 'scatter'
+          }
+          const data = [trace1]
+          Plotly.newPlot('plot', data)
+        }
+        catch (err) {
+          console.error(err)
+          alert(err)
+        }
+      }
+    
+      document.getElementById('form').onsubmit = function (event) {
+        event.preventDefault()
+        draw()
+      }
+    
+      draw()
+    </script>
+    
+</body>
+</html>

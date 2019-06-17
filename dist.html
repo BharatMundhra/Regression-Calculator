@@ -1,0 +1,64 @@
+<html>
+<head>
+    <link rel="stylesheet" href="lig.css">
+</head>
+<body>
+<div id="container">
+    <center><a href="home.html"><button id="home" onmouseover="p()" onmouseout="p()">HOME</button></a></center>
+    <header><center>DISTANCE-MIDPOINT CALCULATION</center></header><br>
+    <p>To find the exact length between 2 co-ordinates (x1, y1) & (x2, y2) in the XY plane or two dimensional geographical co-ordinate system, 
+        by applying pythagoras theorem. According to the rule of right triangle, squared hypotenuse is equal to the sum of the squares of the other two sides.
+        The same formula is applied in this distance calculator to find the length between the two given coordinates (x1, y1) and (x2, y2) in the XY plane.
+        The distance between two point formula, example & calculator helps user to understand, practice and verify such calculations. </p>
+    <p>This calculator uses the following formula to calculate the distance between 2 points:</p>
+    <h2><center>distance = &radic;(x2-x1)<sup>2</sup>+(y2-y1)<sup>2</sup></center></h2>
+    <p>where <strong>(x1,y1)</strong> and <strong>(x2,y2)</strong> are the two co-ordinates in a line.</p>
+    <p>Midpoint of a line segment is the point on that line segment that divides the segment in two congruent segments. It can be calculated using the formula : </p>
+    <h2><center>Midpoint = ( (x1+x2)/2 , (y1+y2)/2 )</center></h2>
+    <p>To calculate the distance and midpoint, enter the numerical values in the boxes below. Press the "Calculate" button to perform the computation. 
+        The distance and midpoint will be displayed if the calculation is successful.</p>
+    <div>
+        <span>x1 : </span>
+        <input type="text" id="x1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>x2 : </span>
+        <input type="text" id="x2"><br><br>
+        <span>y1 : </span>
+        <input type="text" id="y1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>y2 : </span>
+        <input type="text" id="y2"><br><br><hr><br>
+        <span>Distance : </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="dist" value="0"><br><br>
+        <span>Midpoint : </span>
+        <input type="text" id="mp" value="0,0"><br>
+    </div>
+    <span id="err" style="color:red"></span><br>
+    <center><button id="cal" onclick="dist()" onmouseover="p()" onmouseout="p()">Calculate</button></center>
+    <audio id="sound">
+        <source src="./img/sound.mp3" type="audio/mpeg">
+    </audio> 
+</div>
+    <script>
+        var audio=document.getElementById("sound");
+        function p(){audio.play();}
+        function dist(){
+            var x1 = parseInt(document.getElementById("x1").value);
+            var x2 = parseInt(document.getElementById("x2").value);
+            var y1 = parseInt(document.getElementById("y1").value);
+            var y2 = parseInt(document.getElementById("y2").value);
+            var dist = Math.sqrt((y2-y1)**2+(x2-x1)**2);
+            var mp1 = (x1+x2)/2;
+            var mp2 = (y1+y2)/2;
+            if(isNaN(dist)){
+                document.getElementById("err").innerHTML = "*Please Enter Numeric Value Only.";
+            }
+            else{
+                document.getElementById("err").innerHTML = "";
+                document.getElementById("dist").value = dist;
+                document.getElementById("mp").value = mp1+","+mp2;    
+            }
+            
+        }
+        
+    </script>
+</body>
+</html>

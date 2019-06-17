@@ -1,0 +1,34 @@
+<html>
+<head>
+    <link rel="stylesheet" href="lig.css">
+</head>
+<body>
+<div id="container">
+    <center><a href="home.html"><button id="home" onmouseover="p()" onmouseout="p()">HOME</button></a></center>
+    <header><center>REGRESSION CALCULATOR</center></header><br>
+    <div id="links">
+        <ul>
+            <li><a href="mean.html"><button class="link" onmouseover="i1()" onmouseout="aa()">MEAN VALUE CALCULATION</button></a></li><br>
+            <li><a href="slope.html"><button class="link" onmouseover="i2()" onmouseout="aa()">SLOPE-INTERCEPT CALCULATION</button></a></li><br>
+            <li><a href="plot.html"><button class="link" onmouseover="i3()" onmouseout="aa()">PLOT FOR EQUATION</button></a></li><br>
+            <li><a href="index.html"><button class="link" onmouseover="i4()" onmouseout="aa()">LINEAR REGRESSION CALCULATOR</button></a></li><br>
+            <li><a href="dist.html"><button class="link" onmouseover="i5()" onmouseout="aa()">DISTANCE-MIDPOINT CALCULATOR</button></a></li><br>
+        </ul>
+        <img src="./img/all.jpg" id="img">
+        <audio id="sound">
+            <source src="./img/sound.mp3" type="audio/mpeg">
+        </audio> 
+    </div>
+</div>
+<script>
+    var audio=document.getElementById("sound");
+    function p(){audio.play();}
+    function aa(){document.getElementById("img").src="./img/all.jpg";audio.play();}
+    function i1(){document.getElementById("img").src="./img/mean.jpg";audio.play();}
+    function i2(){document.getElementById("img").src="./img/slope.jpg";audio.play();}
+    function i3(){document.getElementById("img").src="./img/graph.jpg";audio.play();}
+    function i4(){document.getElementById("img").src="./img/reg.jpg";audio.play();}
+    function i5(){document.getElementById("img").src="./img/dist.jpg";audio.play();}
+</script>
+</body>
+</html>

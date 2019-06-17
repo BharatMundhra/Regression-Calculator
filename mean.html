@@ -1,0 +1,53 @@
+<html>
+<head>
+    <link rel="stylesheet" href="lig.css">
+</head>
+<body>
+<div id="container">
+    <center><a href="home.html"><button id="home" onmouseover="p()" onmouseout="p()">HOME</button></a></center>
+    <header><center>MEAN VALUE CALCULATION</center></header><br>
+    <p>The mean, most commonly known as the average of a set of numerical values, is a measure of central tendency, 
+        a value that estimates the center of a set of numbers.</p>
+    <p>This calculator uses the following formula to calculate the mean:</p>
+    <h2><center>SUM (x<sub>i</sub>) / n</center></h2>
+    <p>where <strong>n</strong> is the total number of values and <strong>x<sub>i</sub></strong> (x2, x1, ... ,xn) are the individual numbers in the data set.
+        In words: It's the sum of all values, divided by the total number of values.</p>
+    <p>To calculate the mean, enter the numerical values in the box above. You may separate individual values by commas. 
+        You may also copy and paste data into the text box. Press the "Calculate" button to perform the computation. 
+        The mean will be displayed if the calculation is successful.</p>
+    <div id="input" style="margin-top: 0px;">
+        <span id="xx">Values : </span>
+        <textarea type="text" id="val"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="xx">Mean Value :</span>
+        <input type="text" id="mean" value="0">
+    </div>
+    <span id="err" style="color:red"></span><br>
+    <center><button id="cal" onclick="mean()" onmouseover="p()" onmouseout="p()">Calculate</button></center>
+    <audio id="sound">
+       <source src="./img/sound.mp3" type="audio/mpeg">
+    </audio> 
+</div>
+    <script>
+        var audio=document.getElementById("sound");
+        function p(){audio.play();}
+        function sum(s){return eval(s.join('+'));}
+        function mean(){
+            var v0 = document.getElementById("val").value;
+            var v1 = v0.split(",");
+            for(i=0;i<v1.length;i++){
+                v1[i]=parseInt(v1[i]);
+            }
+            var avg = sum(v1)/v1.length;
+            if(isNaN(avg)){
+                document.getElementById("err").innerHTML = "*Please Enter Numeric Value Only.";
+            }
+            else{
+                document.getElementById("err").innerHTML = "";
+                document.getElementById("mean").value = avg;
+            }
+            
+        }
+        
+    </script>
+</body>
+</html>

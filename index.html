@@ -1,0 +1,43 @@
+<html>
+<head>
+    <script src="lig.js"></script>
+    <link rel="stylesheet" href="lig.css">
+</head>
+<body>
+<div id="container">
+    <center><a href="home.html"><button id="home" onmouseover="p()" onmouseout="p()">HOME</button></a></center>
+    <header><center>LINEAR REGRESSION CALCULATOR</center></header><br>
+    <p>This simple linear regression calculator uses the least squares method to find the line of best fit for a set of paired data, 
+        allowing you to estimate the value of a dependent variable (Y) from a given independent variable (X).</p>
+    <p>The line of best fit is described by the equation ŷ = bX + a, where b is the slope of the line and a is the intercept 
+        (i.e., the value of Y when X = 0). This calculator will determine the values of b and a for a set of data comprising two variables, 
+        and estimate the value of Y for any specified value of X.</p>
+    <p>To begin, you need to add paired data into the two text boxes immediately below as a comma delimited list,
+         with your independent variable in the X Values box and your dependent variable in the Y Values box. For example,
+          if you wanted to generate a line of best fit for the association between height and shoe size, allowing you to predict shoe size on the basis of 
+          a person's height, then height would be your independent variable and shoe size your dependent variable.</p>
+    <div id="input" style="margin-top: 0px;">
+        <span id="xx">X Values : </span>
+        <textarea type="text" id="a"></textarea>
+        <span id="xx">Y Values : </span> 
+        <textarea type="text" id="b"></textarea>
+        
+    </div>
+    <p>This calculator can estimate the value of a dependent variable (Y) for any specified value of an independent variable (X). 
+        Simply add the X values for which you wish to generate an estimate into the Estimate box below as a comma delimited list.
+    </p>
+    <div id="input" style="margin-top: 0px;">
+        <span id="xx">Estimate : </span>
+        <textarea type="text" id="c"></textarea><br>
+    </div>
+    <center><a href="lig.html"><button id="cal" onclick="abc()" onmouseover="p()" onmouseout="p()">Calculate</button></a></center>
+    <audio id="sound">
+       <source src="./img/sound.mp3" type="audio/mpeg">
+    </audio> 
+</div>
+    <script>
+        var audio=document.getElementById("sound");
+        function p(){audio.play();}
+    </script>
+</body>
+</html>
